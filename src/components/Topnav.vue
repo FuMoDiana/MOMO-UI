@@ -17,6 +17,8 @@ export default {
   background: rgb(230,255,236);
   display: flex;
   padding: 16px;
+  position: relative;
+  z-index: 10;
   > .logo {
     max-width: 6em;
     margin-right: auto;

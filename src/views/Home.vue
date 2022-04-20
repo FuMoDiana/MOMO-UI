@@ -5,8 +5,8 @@
             <h1>MOMO-UI</h1>
             <h2>一个自用的简单UI框架</h2>
             <p class="actions">
-                <a>Github</a>
-                <a>Start</a>
+                <a href="https://github.com/FuMoDiana/MOMO-UI" target="_blank">Github</a>
+                <router-link to="/doc">Start</router-link>
             </p>
         </div>
     </div>
