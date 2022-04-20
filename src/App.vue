@@ -1,14 +1,13 @@
 <template>
-  <div>hi</div>
-  <momo></momo>
+  <div>Nav-Header|<router-link to="/">momo</router-link>|<router-link to="/xxx">momo2</router-link></div>
+  <hr>
+  <router-view></router-view>
 </template>
 <script>
-import momo from './components/momo.vue';
+
 
 export default {
   name: 'App',
-  components: {
-    momo,
-  }
+
 }
 </script>
