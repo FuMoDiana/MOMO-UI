@@ -1,6 +1,8 @@
 <template>
     <div>
-        <Switch  v-model:value="y" />
+        <h1>Switch 开关</h1>
+        <p>开关选择器</p>
+        <Switch  v-model:value="bool" />
     </div>
 </template>
 <script lang="ts">
@@ -10,8 +12,8 @@ import { ref } from 'vue'
 export default {
     components:{Switch},
     setup() {
-        const y = ref(false);
-        return {y}
+        const bool = ref(false);
+        return {bool}
     }
 }
 </script>
