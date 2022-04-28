@@ -1,6 +1,7 @@
 <template>
         <button class="Momo-button"
-            :class="classes">
+            :class="classes" :disabled="disabled">
+            <span v-if="loading" class="Momo-loadingIndicator"></span>
             <slot />
         </button>
 </template>
@@ -16,14 +17,27 @@ export default {
         size:{
             type:String,
             default:"normal",
+        },
+        level:{
+            type:String,
+            default:"normal"
+        },
+        disabled:{
+            type:Boolean,
+            default:false,
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     setup(props) {
-        const {theme,size} = props;
+        const {theme,size,level} = props;
         const classes =  computed(()=>{
             return{
                 [`Momo-theme-${theme}`]:theme,
                 [`Momo-size-${size}`]:size,
+                [`Momo-level-${level}`]:level,
             }
         })
         return {classes}
@@ -34,6 +48,10 @@ export default {
 <style lang="scss">
 $h:32px;
 $radius:4px;
+$blue:rgba(26,153,204,0.9);
+$green:rgb(66,184,131);
+$red:red;
+$grey:grey;
 .Momo-button {
   box-sizing: border-box;
   height: $h;
@@ -49,15 +67,16 @@ $radius:4px;
   color: rgba(255,255,255,0.9);
   -o-text-overflow: clip;
   text-overflow: clip;
-  background: rgba(26,153,204,0.9);
+  background: $blue;
+  transition: background 250ms;
   box-shadow: 4px 4px 4px -1px rgba(0,0,0,0.2);
   & + &{
       margin-left: 8px;
   }
   &:hover,
   &:focus{
-      background-color: rgb(153,221,153);
-      color: gray;
+      background-color: $green;
+      color: $grey;
   }
   &:focus{
       outline: none;
@@ -68,10 +87,10 @@ $radius:4px;
     &.Momo-theme-link{
     border-color: transparent;
     box-shadow: none;
-    color: rgba(26,153,204,0.9);
+    color: $blue;
     background: none;
     &:hover,&:focus{
-      color: lighten( rgb(66,184,131), 10%);
+      color: lighten( $green, 10%);
     }
   }
   &.Momo-theme-text{
@@ -83,7 +102,6 @@ $radius:4px;
       background: darken(white, 5%);;
     }
   }
-  &.Momo-theme-button{
       &.Momo-size-big{
           font-size: 24px;
           height: 48px;
@@ -94,7 +112,84 @@ $radius:4px;
           height: 20px;
           padding: 0 4px;
     }
+      &.Momo-theme-button {
+    &.Momo-level-main {
+      background: $blue;
+      color: white;
+      border-color: $blue;
+      &:hover,
+      &:focus {
+        background: darken($blue, 10%);
+        border-color: darken($blue, 10%);
+      }
+    }
+    &.Momo-level-danger {
+      background: $red;
+      border-color: $red;
+      color: white;
+      &:hover,
+      &:focus {
+        background: darken($red, 10%);
+        border-color: darken($red, 10%);
+      }
+    }
+  }
+  &.Momo-theme-link {
+    &.Momo-level-danger {
+      color: $red;
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
+  }
+  &.Momo-theme-text {
+    &.Momo-level-main {
+      color: $green;
+      &:hover,
+      &:focus {
+        color: rgb(18,186,106);
+      }
+    }
+    &.Momo-level-danger {
+      color: $red;
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
+  }
+  &.Momo-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+  &.Momo-theme-link, &.Momo-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+    }
+  }
+  > .Momo-loadingIndicator{
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px; 
+    border-color: white transparent white transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: Momo-spin 1s infinite linear;
   }
 }
+@keyframes Momo-spin {
+  0%{transform: rotate(0deg)} 
+  100%{transform: rotate(360deg)} 
+}
+
 
 </style>
