@@ -1,17 +1,32 @@
 <template>
         <button class="Momo-button"
-            :class="`Momo-theme-${theme}`">
+            :class="classes">
             <slot />
         </button>
 </template>
 
 <script lang="ts">
+import {computed} from 'vue'
 export default {
     props:{
         theme:{
             type:String,
             default:'button'
+        },
+        size:{
+            type:String,
+            default:"normal",
         }
+    },
+    setup(props) {
+        const {theme,size} = props;
+        const classes =  computed(()=>{
+            return{
+                [`Momo-theme-${theme}`]:theme,
+                [`Momo-size-${size}`]:size,
+            }
+        })
+        return {classes}
     }
 }
 </script>
@@ -49,6 +64,24 @@ $radius:4px;
   }
   &::-moz-focus-inner{
       border: 0;
+  }
+    &.Momo-theme-link{
+    border-color: transparent;
+    box-shadow: none;
+    color: rgba(26,153,204,0.9);
+    background: none;
+    &:hover,&:focus{
+      color: lighten( rgb(66,184,131), 10%);
+    }
+  }
+  &.Momo-theme-text{
+    border-color: transparent;
+    box-shadow: none;
+    color: inherit;
+    background: none;
+    &:hover,&:focus{
+      background: darken(white, 5%);;
+    }
   }
 }
 
