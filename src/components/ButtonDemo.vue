@@ -50,8 +50,8 @@
   </div>
    <h1>示例五</h1>
   <div>
-    <Button loading>加载中</Button>
-    <Button>加载完毕</Button>
+    <Button loading>Loading</Button>
+    <Button>Download</Button>
   </div>
 </template> 
 

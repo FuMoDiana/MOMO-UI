@@ -119,7 +119,7 @@ $grey:grey;
       border-color: $blue;
       &:hover,
       &:focus {
-        background: darken($blue, 10%);
+        background: darken($green, 10%);
         border-color: darken($blue, 10%);
       }
     }
