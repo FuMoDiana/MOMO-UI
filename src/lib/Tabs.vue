@@ -9,7 +9,7 @@
     <div class="Momo-tabs-nav-indicator" ref="indicator"></div>
   </div>
   <div class="Momo-tabs-content">
-    <component class="Momo-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index" :class="{selected:c.props.title === selected}"/>
+    <component :is="current" :key="current.props.title"/>
 </div>
 </div>
 </template>
@@ -34,6 +34,10 @@ setup(props,context) {
             throw new Error('Tabs子标签必须是Tab');
         }
     });
+    //拿到选中的title，更改页面内容
+    const current = computed(() => {
+      return defaults.find(tag => tag.props.title === props.selected)
+    })
     //挂载时，将选中导航栏的宽度计算出来，赋值给滑动条
     const x = ()=>{
         const divs = navItems.value;
@@ -42,10 +46,11 @@ setup(props,context) {
         indicator.value.style.width = width + 'px';
         const {left:left1} = container.value.getBoundingClientRect();
         const {left:left2} = result.getBoundingClientRect();
+        //滑动后的位置由两个tab之间的left差值决定
         const left3 = left2 - left1;
         indicator.value.style.left = left3 + 'px';   
        }
-    //onMounted只在第一次渲染执行，
+    //onMounted只在第一次渲染执行，利用生命周期钩子对视图进行反复render
     onMounted(x);
     onUpdated(x);
     const select = (title: string) => {
@@ -62,7 +67,8 @@ setup(props,context) {
         select,
         navItems,
         indicator,
-        container
+        container,
+        current
     }
   }
 }
@@ -101,13 +107,6 @@ $border-color: #d9d9d9;
   }
   &-content {
     padding: 8px 0;
-    
-    &-item {
-        display: none;
-        &.selected {
-            display: block;
-        }
-    }
   }
 }
     
