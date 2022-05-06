@@ -34,7 +34,7 @@ setup(props,context) {
             throw new Error('Tabs子标签必须是Tab');
         }
     });
-    //拿到选中的title，更改页面内容
+    //拿到选中的title
     const current = computed(() => {
       return defaults.find(tag => tag.props.title === props.selected)
     })
