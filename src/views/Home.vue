@@ -61,7 +61,7 @@ export default {
       display: inline-block;
       line-height: 28px;
       border-radius: 20px;
-      padding: 8px 24px;
+      padding: 6px 20px;
     }
   }
 }
