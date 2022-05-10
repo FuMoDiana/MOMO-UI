@@ -5,9 +5,9 @@
               <component :is="component"></component>
             </div>
             <div class="demo-actions">
-                <Button>查看代码</Button>
+                <Button @click="toggle">查看代码</Button>
             </div>
-            <div class="demo-code">
+            <div class="demo-code" v-if="codeVisible">
                <pre class="language-html" v-html="html" /> 
             </div>
         </div>
@@ -17,6 +17,7 @@
 import Prism from 'prismjs';
 import '../styles/prism-okaidia.css';
 import Button from '../lib/Button.vue'
+import { ref } from 'vue';
 export default {
     components:{Button},
     props:{
@@ -24,8 +25,11 @@ export default {
     },
     setup(props) {
         const html = Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html');
-        
-        return {html,}
+        const codeVisible = ref(false);
+        const toggle = ()=>{
+            codeVisible.value = !codeVisible.value;
+        }
+        return {html,codeVisible,toggle}
     }
 }
 </script>

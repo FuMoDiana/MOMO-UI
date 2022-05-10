@@ -51,7 +51,7 @@ $radius:4px;
 $blue:rgba(26,153,204,0.9);
 $green:rgb(66,184,131);
 $red:red;
-$grey:grey;
+$grey:black;
 .Momo-button {
   box-sizing: border-box;
   height: $h;
