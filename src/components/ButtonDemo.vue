@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Button 按钮</h1>
     <Demo :component="Button1Demo" />
     <Demo :component="Button2Demo" />
     <Demo :component="Button3Demo" />
@@ -19,7 +20,6 @@ import Button5Demo from '../components/Button5.demo.vue'
 export default {
   components:{Demo},
   setup() {
-    
     return {      
       Button1Demo,
       Button2Demo,

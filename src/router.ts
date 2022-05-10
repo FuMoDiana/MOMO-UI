@@ -18,6 +18,7 @@ export const router = createRouter({
     {
       path: "/doc",
       component: Doc,
+      redirect: "/doc/intro",//默认打开介绍页
       children: [
         { path: "intro", component: md('intro') },
         { path: "get-started", component: md('get-started') },
