@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <Button class="Momo-switch" @click="toggle" :class="{'Momo-checked':value}">
-      <span></span>  
-    </Button>
-  </div>
+  <button class="Momo-switch" @click="toggle" :class="{'Momo-checked':value}">
+    <span></span>  
+  </button>
 </template>
 <script lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 export default {
   props:{
     value:Boolean
@@ -15,7 +13,7 @@ export default {
     const toggle = ()=>{
       context.emit('update:value',!props.value);
   }
-    return {toggle}
+    return {toggle}; 
   }
 }
 </script>

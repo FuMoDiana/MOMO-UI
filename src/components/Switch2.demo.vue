@@ -1,0 +1,23 @@
+<demo>
+ 支持disabled
+</demo>
+<template>
+<div>
+  <Switch v-model:value="bool" disabled />
+</div>
+</template>
+
+<script lang="ts">
+/**
+ * 此处为相对路径，使用时记得更改
+ */
+import Switch from '../lib/Switch.vue'
+import {ref} from 'vue'
+export default {
+  components: {Switch},
+  setup() {
+    const bool = ref(false)
+    return {bool}
+  }
+}
+</script>

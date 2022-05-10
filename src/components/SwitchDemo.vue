@@ -4,27 +4,26 @@
         <div class="demo">
             <h2>常规用法</h2>
             <div class="demo-component">
-                <Switch  v-model:value="bool" />
+                <component :is="Switch1Demo"></component>
             </div>
             <div class="demo-actions">
                 <Button>查看代码</Button>
             </div>
             <div class="demo-code">
-               <pre>&lt;Switch v-model:value="bool" /&gt;</pre> 
+              <pre class="language-html" v-html="Prism.highlight(Switch1Demo.__sourceCode, Prism.languages.html, 'html')" />
             </div>
         </div>
         <div class="demo">
             <h2>支持disabled</h2>
             <div class="demo-component">
-                <Switch v-model="bool" disabled />
+              <component :is="Switch2Demo"></component>
             </div>
             <div class="demo-actions">
                 <Button>查看代码</Button>
             </div>
             <div class="demo-code">
-               <pre>&lt;Switch v-model:value="bool" disabled/&gt;</pre> 
+               <pre class="language-html" v-html="Prism.highlight(Switch2Demo.__sourceCode, Prism.languages.html, 'html')" /> 
             </div>
-
         </div>
     </div>
 </template>
@@ -32,17 +31,23 @@
 import Switch from '../lib/Switch.vue'
 import Button from '../lib/Button.vue'
 import { ref } from 'vue'
+import Switch1Demo from './Switch1.demo.vue'
+import Switch2Demo from './Switch2.demo.vue'
+import Prism from 'prismjs';
+import '../styles/prism-okaidia.css';
+
 
 export default {
     components:{Switch,Button},
     setup() {
+      
         const bool = ref(false);
-        return {bool}
+        return {bool,Switch1Demo,Switch2Demo,Prism}
     }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $border-color: #d9d9d9;
 .demo {
   border: 1px solid $border-color;
