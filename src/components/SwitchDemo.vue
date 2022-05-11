@@ -4,14 +4,11 @@
         <Demo :component="Switch1Demo" />
         <Demo :component="Switch2Demo" />
     </div>
-    <div class="jump">
-      <div class="before">
-        <p>上一节：<router-link to="/doc/get-started" >Button</router-link></p>
-      </div>
-      <div class="next">
-        <p>下一节：<router-link to="/doc/button" >Button</router-link></p>
-      </div>
-    </div>
+    <jump 
+    :before="before"
+    :beforename="beforename" 
+    :nextname="nextname"
+    :next="next" />
 </template>
 <script lang="ts">
 import Button from '../lib/Button.vue'
@@ -19,30 +16,18 @@ import { ref } from 'vue'
 import Switch1Demo from './Switch1.demo.vue'
 import Switch2Demo from './Switch2.demo.vue'
 import Demo from '../components/Demo.vue'
-
+import jump from '../components/jump.vue'
 
 
 export default {
-    components:{Button,Demo},
+    components:{Button,Demo,jump},
     setup() {
         const bool = ref(false);
-        return {bool,Switch1Demo,Switch2Demo}
+        const before = '/doc/get-started'
+        const next = '/doc/button'
+        const beforename = '开始'
+        const nextname = 'Button'
+        return {bool,Switch1Demo,Switch2Demo,before,next,beforename,nextname}
     }
 }
 </script>
-
-<style lang="scss">
-  .jump{
-        display: flex;
-        justify-content: space-between;
-    .before {
-        float: left;
-    }
-    .next {
-        float: right;
-    }
-        a{
-            color: rgb(9,155,235);
-        }
-    }
-</style>
