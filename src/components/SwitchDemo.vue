@@ -4,6 +4,14 @@
         <Demo :component="Switch1Demo" />
         <Demo :component="Switch2Demo" />
     </div>
+    <div class="jump">
+      <div class="before">
+        <p>上一节：<router-link to="/doc/get-started" >Button</router-link></p>
+      </div>
+      <div class="next">
+        <p>下一节：<router-link to="/doc/button" >Button</router-link></p>
+      </div>
+    </div>
 </template>
 <script lang="ts">
 import Button from '../lib/Button.vue'
@@ -22,3 +30,19 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+  .jump{
+        display: flex;
+        justify-content: space-between;
+    .before {
+        float: left;
+    }
+    .next {
+        float: right;
+    }
+        a{
+            color: rgb(9,155,235);
+        }
+    }
+</style>
